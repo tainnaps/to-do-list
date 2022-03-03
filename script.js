@@ -1,39 +1,35 @@
-const header = document.querySelector('header');
+const addTaskButton = document.querySelector('#add-task');
+const taskList = document.querySelector('#task-list');
+const input = document.querySelector('#task-content');
+const clearListButton = document.querySelector('#clear-list');
+const removeTasksButton = document.querySelector('#clear-completed');
+const saveListButton = document.querySelector('#save-task-list');
+const upButton = document.querySelector('#move-up');
+const downButton = document.querySelector('#move-down');
+const removeSelectedButton = document.querySelector('#remove-selected');
 
-const main = document.querySelector('main');
+window.onload = () => {
+  if (localStorage.length !== 0) {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
 
-const title = document.createElement('h1');
-title.innerText = 'Minha Lista de Tarefas';
-header.appendChild(title);
+    savedTasks.forEach((savedTask) => {
+      const task = document.createElement('li');
+      task.className = savedTask.classes;
+      task.innerText = savedTask.content;
+      taskList.appendChild(task);
 
-const paragraph = document.createElement('p');
-paragraph.id = 'funcionamento';
-paragraph.innerText = 'Clique duas vezes em um item para marcá-lo como completo';
-header.appendChild(paragraph);
+      localStorage.clear();
 
-const addTaskSection = document.createElement('section');
-addTaskSection.id = 'add-task';
-main.appendChild(addTaskSection);
+      changeTaskBackgroundColor(task);
 
-const input = document.createElement('input');
-input.id = 'texto-tarefa';
-input.type = 'text';
-addTaskSection.appendChild(input);
-
-const addTaskButton = document.createElement('button');
-addTaskButton.id = 'criar-tarefa';
-addTaskButton.innerText = 'Adicionar';
-addTaskSection.appendChild(addTaskButton);
-
-const taskListSection = document.createElement('section');
-main.appendChild(taskListSection);
-
-const taskList = document.createElement('ol');
-taskList.id = 'lista-tarefas';
-taskListSection.appendChild(taskList);
+      markAsCompleted(task);
+    });
+  }
+}
 
 function changeSelectedTask(selectedTask, newSelectedTask) {
   const status = 'selected';
+
   if (selectedTask !== newSelectedTask) {
     /*
     Consultei o site abaixo para descobrir como adicionar e remover uma classe sem perder as que já estavam aplicadas
@@ -80,22 +76,16 @@ addTaskButton.addEventListener('click', () => {
     task.classList.add('task');
     task.innerText = input.value;
     taskList.appendChild(task);
+
     input.value = '';
+
     changeTaskBackgroundColor(task);
+
     markAsCompleted(task);
   } else {
-    alert('Ops! Você ainda não inseriu a tarefa.');
+    alert('Ops! You have not added the task.');
   }
 });
-
-const controlSection = document.createElement('section');
-controlSection.id = 'tasks-control';
-main.appendChild(controlSection);
-
-const clearListButton = document.createElement('button');
-clearListButton.id = 'apaga-tudo';
-clearListButton.innerText = 'Limpar lista';
-controlSection.appendChild(clearListButton);
 
 clearListButton.addEventListener('click', () => {
   /*
@@ -107,67 +97,44 @@ clearListButton.addEventListener('click', () => {
   }
 });
 
-const removeTasksButton = document.createElement('button');
-removeTasksButton.id = 'remover-finalizados';
-removeTasksButton.innerText = 'Limpar completas';
-controlSection.appendChild(removeTasksButton);
-
 removeTasksButton.addEventListener('click', () => {
   /*
   Consultei o site abaixo para descobrir como remover todos os elementos com uma característica específica de uma HTML Collection
   ref: https://stackoverflow.com/questions/37311003/how-to-remove-an-item-from-htmlcollection
   */
   const { children } = taskList;
-  for (let index = (children.length - 1); index >= 0; index -= 1) {
+
+  [...children].forEach((child) => {
     /*
     Consultei o link abaixo para saber como identificar se um elemento contém uma classe específica aplicada a ele
     ref: https://www.w3schools.com/jsref/prop_element_classlist.asp
     */
-    if (children[index].classList.contains('completed')) {
-      taskList.removeChild(children[index]);
+    if (child.classList.contains('completed')) {
+      taskList.removeChild(child);
     }
-  }
+  });
 });
-
-const saveListButton = document.createElement('button');
-saveListButton.id = 'salvar-tarefas';
-saveListButton.innerText = 'Salvar Lista';
-controlSection.appendChild(saveListButton);
 
 saveListButton.addEventListener('click', () => {
   const tasks = document.getElementsByClassName('task');
-  const taskObjects = [];
-  for (let index = 0; index < tasks.length; index += 1) {
-    taskObjects[index] = {
-      text: tasks[index].innerText,
-      classes: tasks[index].classList.value,
-    };
-  }
-  localStorage.setItem('tasks', JSON.stringify(taskObjects));
+  const tasksArray = [];
+
+  [...tasks].forEach((task) => {
+    tasksArray.push({
+      content: task.innerText,
+      classes: task.classList.value,
+    });
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasksArray));
 });
 
-if (localStorage.length !== 0) {
-  const savedTasks = JSON.parse(localStorage.getItem('tasks'));
-  for (let index = 0; index < savedTasks.length; index += 1) {
-    const task = document.createElement('li');
-    task.className = savedTasks[index].classes;
-    task.innerText = savedTasks[index].text;
-    taskList.appendChild(task);
-    localStorage.clear();
-    changeTaskBackgroundColor(task);
-    markAsCompleted(task);
-  }
-}
-
-const upButton = document.createElement('button');
-upButton.id = 'mover-cima';
-upButton.innerText = '⇧';
-controlSection.appendChild(upButton);
 
 upButton.addEventListener('click', () => {
   const selectedTask = getSelectedTask();
+
   if (selectedTask === null) {
-    alert('Nenhuma tarefa foi selecionada.');
+    alert('No task was selected.');
   } else if (selectedTask !== taskList.firstElementChild) {
     /*
     Consultei o site abaixo para descobrir como adicionar um elemento HTML antes de um determinado elemento já existente
@@ -177,24 +144,15 @@ upButton.addEventListener('click', () => {
   }
 });
 
-const downButton = document.createElement('button');
-downButton.id = 'mover-baixo';
-downButton.innerText = '⇩';
-controlSection.appendChild(downButton);
-
 downButton.addEventListener('click', () => {
   const selectedTask = getSelectedTask();
+
   if (selectedTask === null) {
-    alert('Nenhuma tarefa foi selecionada.');
+    alert('No task was selected.');
   } else if (selectedTask !== taskList.lastElementChild) {
     taskList.insertBefore(selectedTask.nextElementSibling, selectedTask);
   }
 });
-
-const removeSelectedButton = document.createElement('button');
-removeSelectedButton.id = 'remover-selecionado';
-removeSelectedButton.innerText = 'X';
-controlSection.appendChild(removeSelectedButton);
 
 removeSelectedButton.addEventListener('click', () => {
   const selectedTask = getSelectedTask();
