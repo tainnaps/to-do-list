@@ -88,6 +88,7 @@ input {
 
 li {
   line-height: 30px;
+  font-family: 'Syne Mono', monospace;
 }
 
 .selected {
