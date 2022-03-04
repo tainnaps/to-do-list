@@ -7,67 +7,86 @@
 
 body {
   background-color: rgb(233, 234, 235);
-  font-family: Urbanist, sans-serif;
 }
 
-header {
+main {
+  display: flex;
+  height: 100vh;
+}
+
+.instruction-section {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tasks-section {
+  width: 55%;
+  background-color: rgb(53, 52, 52);
+  padding-top: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instructions {
+  width: 60%;
+  padding: 12% 8%;
+  background-color: rgb(53, 52, 52);
+  border-radius: 4%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-h1 {
-  margin-top: 8vh;
-  margin-bottom: 3vh;
+h2 {
+  margin-bottom: 9%;
   font-family: 'Syne Mono', monospace;
-}
-
-.instructions {
-  width: 60vh;
-  padding: 8vh;
-  background-color: rgb(53, 52, 52);
-  border-radius: 2%;
-  margin-bottom: 5vh;
-  margin-top: 1.5vh;
+  color: rgb(239 , 241 , 243);
+  font-size: xx-large;
 }
 
 .instructions li {
-  color: rgb(239 , 241 , 243);
   list-style: square;
+}
+
+li {
+  line-height: 30px;
+  color: rgb(239 , 241 , 243);
+  font-family: 'Syne Mono', monospace;
 }
 
 button {
   cursor: pointer;
-  margin: 0 1.5vh;
-  padding: 7px 10px;
+  font-size: 14px;
+  margin: 0 8px;
+  padding: 10px 15px;
   border: none;
   background-color: white;
   border-radius: 6%;
 }
 
 button:hover {
-  background-color: #bebebe;
+  background-color: #c4c4c4;
 }
 
 input {
-  padding: 7px;
-  width: 300px;
+  padding: 10px;
+  width: 285px;
   border: none;
-  border-radius: 3%;
+  font-size: 14px;
+  margin-right: 9px;
 }
 
 #add-task-section {
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
+  margin-bottom: 23px;
 }
 
 #tasks-control {
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 40px;
 }
 
@@ -78,23 +97,20 @@ input {
 }
 
 #task-list {
-  width: fit-content;
-  display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-li {
-  line-height: 30px;
-  font-family: 'Syne Mono', monospace;
+#task-list li {
+  font-size: large;
 }
 
 .selected {
-  background-color: #bebebe;
+  background-color: #818181;
 }
 
 .completed {
-  text-decoration: line-through solid black;
+  text-decoration: line-through solid white;
 }
