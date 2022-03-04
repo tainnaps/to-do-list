@@ -12,77 +12,81 @@
 </head>
 
 <body>
-  <header>
-    <h1>To Do List</h1>
-    <ul class="instructions">
-      <li>Click the task to select it</li>
-      <li>Double click the task to mark it as completed</li>
-      <li>Use the arrows to move the selected task through the list</li>
-    </ul>
-  </header>
-
   <main>
-    <section id="add-task-section">
-      <input
-        type="text"
-        placeholder="Insert your task"
-        id="task-content"
-      />
-
-      <button
-        type="button"
-        id="add-task"
-      >
-        <i class="fa-solid fa-plus"></i>  
-      </button>
+    <section class="instruction-section">
+      <section class="instructions">
+        <h2>To Do List</h2>
+        <ul>
+          <li>Click the task to select it</li>
+          <li>Double click the task to mark it as completed</li>
+          <li>Use the arrows to move the selected task through the list</li>
+        </ul>
+      </section>
     </section>
 
-    <section id="tasks-control">
-      <button
-        type="button"
-        id="clear-list"
-      >
-        Clear list
-      </button>
+    <section class="tasks-section">
+      <section id="add-task-section">
+        <input
+          type="text"
+          placeholder="Insert your task"
+          id="task-content"
+        />
 
-      <button
-        type="button"
-        id="clear-completed"
-      >
-        Clear completed
-      </button>
+        <button
+          type="button"
+          id="add-task"
+        >
+          <i class="fa-solid fa-plus"></i>  
+        </button>
+      </section>
 
-      <button
-        type="button"
-        id="save-task-list"
-      >
-        <i class="fa-solid fa-bookmark"></i>
-      </button>
+      <section id="tasks-control">
+        <button
+          type="button"
+          id="clear-list"
+        >
+          Clear list
+        </button>
 
-      <button
-        type="button"
-        id="move-up"
-      >
-        <i class="fa-solid fa-arrow-up"></i>
-      </button>
+        <button
+          type="button"
+          id="clear-completed"
+        >
+          Clear completed
+        </button>
 
-      <button
-        type="button"
-        id="move-down"
-      >
-        <i class="fa-solid fa-arrow-down"></i>
-      </button>
+        <button
+          type="button"
+          id="save-task-list"
+        >
+          <i class="fa-solid fa-bookmark"></i>
+        </button>
 
-      <button
-        type="button"
-        id="remove-selected"
-      >
-        <i class="fa-solid fa-trash-can"></i>
-      </button>
-    </section>
+        <button
+          type="button"
+          id="move-up"
+        >
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
 
-    <section id="task-list-section">
-      <ol id="task-list"></ol>
+        <button
+          type="button"
+          id="move-down"
+        >
+          <i class="fa-solid fa-arrow-down"></i>
+        </button>
+
+        <button
+          type="button"
+          id="remove-selected"
+        >
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </section>
+
+      <section id="task-list-section">
+        <ol id="task-list"></ol>
+      </section>
     </section>
   </main>
 
