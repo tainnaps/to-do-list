@@ -8,28 +8,10 @@ const upButton = document.querySelector('#move-up');
 const downButton = document.querySelector('#move-down');
 const removeSelectedButton = document.querySelector('#remove-selected');
 
-window.onload = () => {
-  if (localStorage.length !== 0) {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
-
-    savedTasks.forEach((savedTask) => {
-      const task = document.createElement('li');
-      task.className = savedTask.classes;
-      task.innerText = savedTask.content;
-      taskList.appendChild(task);
-
-      localStorage.clear();
-
-      changeTaskBackgroundColor(task);
-
-      markAsCompleted(task);
-    });
-  }
-}
 
 function changeSelectedTask(selectedTask, newSelectedTask) {
   const status = 'selected';
-
+  
   if (selectedTask !== newSelectedTask) {
     /*
     Consultei o site abaixo para descobrir como adicionar e remover uma classe sem perder as que já estavam aplicadas
@@ -49,7 +31,7 @@ function changeTaskBackgroundColor(task) {
   Consultei o site abaixo para descobrir como criar uma função anônima de forma que o linter aceitasse
   ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions
   */
-  task.addEventListener('click', (event) => {
+ task.addEventListener('click', (event) => {
     const selectedTask = getSelectedTask();
     // Quando nenhuma tarefa foi selecionada ainda, o conteúdo de selectedTask é null, então eu apenas atribuo a classe selected ao elemento que disparou esse evento. Caso contrário, eu retiro selected da tarefa atual selecionada e atribuo ela ao elemento que disparou o evento.
     if (selectedTask !== null) {
@@ -66,9 +48,28 @@ function markAsCompleted(task) {
     Consultei o site abaixo para descobrir como alternar a aplicação de uma classe a um elemento
     ref: https://www.w3schools.com/jsref/prop_element_classlist.asp
     */
-    event.target.classList.toggle('completed');
+   event.target.classList.toggle('completed');
   });
 }
+
+window.onload = () => {
+  if (localStorage.length !== 0) {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+
+    savedTasks.forEach((savedTask) => {
+      const task = document.createElement('li');
+      task.className = savedTask.classes;
+      task.innerText = savedTask.content;
+      taskList.appendChild(task);
+
+      localStorage.clear();
+
+      changeTaskBackgroundColor(task);
+
+      markAsCompleted(task);
+    });
+  }
+};
 
 addTaskButton.addEventListener('click', () => {
   if (input.value !== '') {
@@ -127,8 +128,8 @@ saveListButton.addEventListener('click', () => {
   });
 
   localStorage.setItem('tasks', JSON.stringify(tasksArray));
+  alert('Your list has been saved!');
 });
-
 
 upButton.addEventListener('click', () => {
   const selectedTask = getSelectedTask();
