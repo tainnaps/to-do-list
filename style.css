@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   font-family: 'Nunito Sans', sans-serif;
-  color: rgb(53, 52, 52);
 }
 
 body {
@@ -12,6 +11,10 @@ body {
 main {
   display: flex;
   height: 100vh;
+}
+
+.fa-solid {
+  color: white;
 }
 
 .instruction-section {
@@ -31,7 +34,7 @@ main {
 }
 
 .instructions {
-  width: 60%;
+  width: 70%;
   padding: 12% 8%;
   background-color: rgb(53, 52, 52);
   border-radius: 4%;
@@ -58,18 +61,15 @@ li {
   font-family: 'Syne Mono', monospace;
 }
 
-button {
-  cursor: pointer;
-  font-size: 14px;
+.btn {
+  border: 2px solid white;
+  color: white;
   margin: 0 8px;
-  padding: 10px 15px;
-  border: none;
-  background-color: white;
-  border-radius: 6%;
 }
 
-button:hover {
-  background-color: #c4c4c4;
+.btn:hover {
+  background-color: #868686;
+  color: white;
 }
 
 input {
@@ -78,6 +78,7 @@ input {
   border: none;
   font-size: 14px;
   margin-right: 9px;
+  border-radius: 3px;
 }
 
 #add-task-section {
