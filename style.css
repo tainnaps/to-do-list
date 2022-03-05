@@ -68,7 +68,7 @@ li {
 }
 
 .btn:hover {
-  background-color: #868686;
+  background-color: rgb(134, 134, 134);
   color: white;
 }
 
@@ -109,7 +109,7 @@ input {
 }
 
 .selected {
-  background-color: #818181;
+  background-color: rgb(129, 129, 129);
 }
 
 .completed {
