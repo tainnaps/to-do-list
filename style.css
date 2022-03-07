@@ -9,7 +9,6 @@ body {
 }
 
 main {
-  display: flex;
   height: 100vh;
 }
 
@@ -18,26 +17,24 @@ main {
 }
 
 .instruction-section {
-  width: 45%;
+  height: 40vh;
+  color:  rgb(53, 52, 52);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .tasks-section {
-  width: 55%;
+  height: 60vh;
   background-color: rgb(53, 52, 52);
-  padding-top: 4%;
+  padding-top: 55px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .instructions {
-  width: 70%;
   padding: 12% 8%;
-  background-color: rgb(53, 52, 52);
-  border-radius: 4%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,9 +42,8 @@ main {
 }
 
 h2 {
-  margin-bottom: 9%;
+  margin-bottom: 30px;
   font-family: 'Syne Mono', monospace;
-  color: rgb(239 , 241 , 243);
   font-size: xx-large;
 }
 
@@ -57,7 +53,6 @@ h2 {
 
 li {
   line-height: 30px;
-  color: rgb(239 , 241 , 243);
   font-family: 'Syne Mono', monospace;
 }
 
@@ -73,8 +68,8 @@ li {
 }
 
 input {
+  width: 200px;
   padding: 10px;
-  width: 285px;
   border: none;
   font-size: 14px;
   margin-right: 9px;
@@ -84,11 +79,21 @@ input {
 #add-task-section {
   width: fit-content;
   margin-bottom: 23px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
 
 #tasks-control {
   width: fit-content;
+  height: 65px;
   margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 3px;
+  justify-content: center;
+  align-content: center;
 }
 
 #task-list-section {
@@ -114,4 +119,38 @@ input {
 
 .completed {
   text-decoration: line-through solid white;
+}
+
+@media screen and (min-width: 1000px) {
+  main {
+    display: flex;
+  }
+
+  .instruction-section {
+    width: 45%;
+    height: 100vh;
+  }
+
+  .tasks-section {
+    width: 55%;
+    height: 100vh;
+  }
+
+  .instructions {
+    width: 70%;
+    background-color: rgb(53, 52, 52);
+    border-radius: 15px;
+  }
+
+  h2 {
+    color: rgb(239 , 241 , 243);
+  }
+
+  input {
+    width: 285px;
+  }
+
+  li {
+    color: rgb(239 , 241 , 243);
+  }
 }
