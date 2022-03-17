@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: rgb(233, 234, 235);
+  background-color: rgb(53, 52, 52);
 }
 
 main {
@@ -18,7 +18,8 @@ main {
 
 .instruction-section {
   height: 40vh;
-  color:  rgb(53, 52, 52);
+  background-color: rgb(233, 234, 235);
+  color: rgb(53, 52, 52);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +44,7 @@ main {
 
 h2 {
   margin-bottom: 30px;
+  margin-top: 20px;
   font-family: 'Syne Mono', monospace;
   font-size: xx-large;
 }
@@ -103,7 +105,7 @@ input {
 }
 
 #task-list {
-  margin-bottom: 5%;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,6 +113,7 @@ input {
 
 #task-list li {
   font-size: large;
+  color: rgb(239, 241, 243);
 }
 
 .selected {
@@ -143,7 +146,8 @@ input {
   }
 
   h2 {
-    color: rgb(239 , 241 , 243);
+    color: rgb(239, 241, 243);
+    margin-top: 0;
   }
 
   input {
@@ -151,6 +155,6 @@ input {
   }
 
   li {
-    color: rgb(239 , 241 , 243);
+    color: rgb(239, 241, 243);
   }
 }
